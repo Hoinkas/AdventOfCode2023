@@ -18,14 +18,14 @@ for line in lines:
 print(firstTaskResult)
 
 #---------SECOND PUZZLE SOLUTION---------
-translator = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9"}
+translator = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9}
 
 secondTaskResult = 0
 
 for line in lines:
   results = re.findall(f"(?=(\d|{'|'.join(translator.keys())}))", line)
-  translatedList = [item if item.isdigit() else translator[item] for item in results]
-  numbersToAdd = int(translatedList[0]) * 10 + int(translatedList[-1])
+  translatedList = [int(item) if item.isdigit() else translator[item] for item in results]
+  numbersToAdd = translatedList[0] * 10 + translatedList[-1]
   secondTaskResult += numbersToAdd
 
 print(secondTaskResult)
