@@ -4,6 +4,7 @@ with open('AOC_1Day_Quest.txt') as f:
   l = f.readlines()
   lines = [entry.strip() for entry in l]
 
+#---------FIRST PUZZLE SOLUTION---------
 #Importing re for faster finding specific words/digits in lines
 import re
 
@@ -16,6 +17,7 @@ for line in lines:
 
 print(firstTaskResult)
 
+#---------SECOND PUZZLE SOLUTION---------
 #Dictionary for every number name with corresponding numbers
 translator = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9"}
 
