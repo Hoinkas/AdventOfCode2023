@@ -12,7 +12,7 @@ firstTaskResult = 0
 
 for line in lines:
   numbersInLine = [int(match) for match in re.findall(r"\d", line)]
-  numbersToAdd = int(numbersInLine[0]) * 10 + int(numbersInLine[-1])
+  numbersToAdd = numbersInLine[0] * 10 + numbersInLine[-1]
   firstTaskResult += numbersToAdd
 
 print(firstTaskResult)
