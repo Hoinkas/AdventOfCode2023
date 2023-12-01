@@ -31,4 +31,4 @@ for line in lines:
 print(secondTaskResult)
 
 ##Kudos to naalty post in reddit for showing code with re usage which I implemented in 26 line in my file - https://www.reddit.com/r/adventofcode/comments/1883ibu/comment/kbiu5bo/?utm_source=reddit&utm_medium=web2x&context=3
-##Kudos to girafon for advice of returning two parsed digits in line 15, 28 and how to simplyfy switching key-value function to simple dict[key] one https://www.reddit.com/r/adventofcode/comments/1883ibu/comment/kbj1tqf/
+##Kudos to girafon for advice of returning two parsed digits in line 15, 28 and how to simplyfy switching key-value function to simple dict[key] one in line 27 - https://www.reddit.com/r/adventofcode/comments/1883ibu/comment/kbj1tqf/
