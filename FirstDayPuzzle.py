@@ -12,7 +12,7 @@ firstTaskResult = 0
 
 for line in lines:
   numbersInLine = [int(match) for match in re.findall(r"\d", line)]
-  numbersToAdd = numbersInLine[0] * 10 + numbersInLine[-1]
+  numbersToAdd = int(numbersInLine[0]) * 10 + int(numbersInLine[-1])
   firstTaskResult += numbersToAdd
 
 print(firstTaskResult)
@@ -25,7 +25,7 @@ secondTaskResult = 0
 for line in lines:
   results = re.findall(f"(?=(\d|{'|'.join(translator.keys())}))", line)
   translatedList = [item if item.isdigit() else translator[item] for item in results]
-  numbersToAdd = numbersInLine[0] * 10 + numbersInLine[-1]
+  numbersToAdd = int(translatedList[0]) * 10 + int(translatedList[-1])
   secondTaskResult += numbersToAdd
 
 print(secondTaskResult)
