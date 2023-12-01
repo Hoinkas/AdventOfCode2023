@@ -12,7 +12,7 @@ firstTaskResult = 0
 
 for line in lines:
   numbersInLine = [int(match) for match in re.findall(r"\d", line)]
-  numbersToAdd = int(''.join([str(numbersInLine[0]),str(numbersInLine[-1])]))
+  numbersToAdd = numbersInLine[0] * 10 + numbersInLine[-1]
   firstTaskResult += numbersToAdd
 
 print(firstTaskResult)
@@ -20,17 +20,15 @@ print(firstTaskResult)
 #---------SECOND PUZZLE SOLUTION---------
 translator = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9"}
 
-def replaceWordsWithNumbers(textLine):
-  for word, initial in translator.items():
-    textLine = textLine.replace(word, initial)
-  return textLine
-
 secondTaskResult = 0
 
 for line in lines:
   results = re.findall(f"(?=(\d|{'|'.join(translator.keys())}))", line)
-  translatedList = [item if item.isdigit() else replaceWordsWithNumbers(item) for item in results]
-  numbersToAdd = int(''.join([str(translatedList[0]),str(translatedList[-1])]))
+  translatedList = [item if item.isdigit() else translator[item] for item in results]
+  numbersToAdd = numbersInLine[0] * 10 + numbersInLine[-1]
   secondTaskResult += numbersToAdd
 
 print(secondTaskResult)
+
+##Kudos to naalty post in reddit for showing code with re usage which I implemented in 26 line in my file - https://www.reddit.com/r/adventofcode/comments/1883ibu/comment/kbiu5bo/?utm_source=reddit&utm_medium=web2x&context=3
+##Kudos to girafon for advice of returning two parsed digits in line 15, 28 and how to simplyfy switching key-value function to simple dict[key] one https://www.reddit.com/r/adventofcode/comments/1883ibu/comment/kbj1tqf/
