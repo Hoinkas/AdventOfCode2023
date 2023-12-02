@@ -17,3 +17,19 @@ for line in lines:
     firstTaskResult += numberOfGame
 
 print(firstTaskResult)
+
+#---------SECOND PUZZLE SOLUTION---------
+import numpy
+secondTaskResult = 0
+
+for line in lines:
+  gameMinValuesDict = {"red": 0, "green": 0, "blue": 0}
+
+  for color in gameMinValuesDict.keys():
+    valuesOfColor = re.finditer(f"(\d+) {color}", line)
+    gameMinValuesDict[color] = max(int(value.group(1)) for value in valuesOfColor)
+  
+  multipliedMaxValues = numpy.prod(list(gameMinValuesDict.values()))
+  secondTaskResult += multipliedMaxValues
+
+print(secondTaskResult)
