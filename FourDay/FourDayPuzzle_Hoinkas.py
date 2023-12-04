@@ -9,7 +9,7 @@ def firstPuzzleSolution(lines):
 
   for line in lines:
     twoCardsList = [cardList.strip() for cardList in line.split(': ')[1].split('|')]
-    [winningCardList, guessingCardList] = [map(int, filter(None, cardList.split(' '))) for cardList in twoCardsList]
+    [winningCardList, guessingCardList] = [map(int, cardList.split()) for cardList in twoCardsList]
 
     numberOfWinningCards = len(list(set(winningCardList).intersection(guessingCardList)))
     if numberOfWinningCards > 0: firstTaskResult += 2**(numberOfWinningCards-1)
@@ -30,7 +30,7 @@ def secondPuzzleSolution(lines):
     gameDict[numberOfGame] = 1
 
     twoCardsList = [cardList.strip() for cardList in gameAndCardList[1].split('|')]  
-    [winningCardList, guessingCardList] = [map(int, filter(None, cardList.split(' '))) for cardList in twoCardsList]
+    [winningCardList, guessingCardList] = [map(int, cardList.split()) for cardList in twoCardsList]
 
     numberOfWinningCards = len(list(set(winningCardList).intersection(guessingCardList)))
     gameWins[numberOfGame] = numberOfWinningCards
