@@ -55,6 +55,21 @@ ninthCase = ['.......5......',
               '21............',
               '...*9.........']
 
+#Case created by i_have_no_biscuits
+#https://www.reddit.com/r/adventofcode/comments/189q9wv/2023_day_3_another_sample_grid_to_use/
+tenthCase = ['12.......*..',
+             '+.........34',
+             '.......-12..',
+             '..78........',
+             '..*....60...',
+             '78.........9',
+             '.5.....23..$',
+             '8...90*12...',
+             '............',
+             '2.2......12.',
+             '.*.........*',
+             '1.1..503+.56']
+
 #Change firstPuzzleSolution() in 60 line with your function name after importing it beforehand
 def yourFirstSolution(lines):
   return firstPuzzleSolution(lines)
@@ -73,6 +88,7 @@ class TestFirstSolution(unittest.TestCase):
     self.assertEqual(yourFirstSolution(seventhCase), 44)
     self.assertEqual(yourFirstSolution(eigthCase), 0)
     self.assertEqual(yourFirstSolution(ninthCase), 108)
+    self.assertEqual(yourFirstSolution(tenthCase), 925)
 
 #Change secondPuzzleSolution() in 79 line with your function name after importing it beforehand
 def yourSecondSolution(lines):
@@ -85,6 +101,7 @@ class TestSecondSolution(unittest.TestCase):
   def test_community_cases(self): 
     self.assertEqual(yourSecondSolution(fifthCase), 0)
     self.assertEqual(yourSecondSolution(ninthCase), 478)
+    self.assertEqual(yourSecondSolution(tenthCase), 31600)
 
 if __name__ == '__main__':
   unittest.main()
