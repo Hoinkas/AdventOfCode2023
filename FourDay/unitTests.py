@@ -13,6 +13,7 @@ firstCase = ['Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53',
              'Card 4: 41 92 73 84 69 | 59 84 76 51 58  5 54 83',
              'Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36',
              'Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11']
+secondCase = ['Card 1:  1 21 | 21  1  3']
 
 #Change firstPuzzleSolution() in 60 line with your function name after importing it beforehand
 def yourFirstSolution(lines):
@@ -24,6 +25,7 @@ class TestFirstSolution(unittest.TestCase):
   
   def test_community_cases(self): 
     self.assertEqual(yourFirstSolution(firstCase), 13)
+    self.assertEqual(yourFirstSolution(secondCase), 2)
 
 #Change secondPuzzleSolution() in 79 line with your function name after importing it beforehand
 def yourSecondSolution(lines):
@@ -35,6 +37,7 @@ class TestSecondSolution(unittest.TestCase):
   
   def test_community_cases(self): 
     self.assertEqual(yourSecondSolution(firstCase), 30)
+    self.assertEqual(yourSecondSolution(secondCase), 1)
 
 if __name__ == '__main__':
   unittest.main()
