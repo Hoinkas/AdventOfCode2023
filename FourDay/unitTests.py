@@ -15,7 +15,7 @@ firstCase = ['Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53',
              'Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11']
 secondCase = ['Card 1:  1 21 | 21  1  3']
 
-#Change firstPuzzleSolution() in 60 line with your function name after importing it beforehand
+#Change firstPuzzleSolution() in 20 line with your function name after importing it beforehand
 def yourFirstSolution(lines):
   return firstPuzzleSolution(lines)
 
@@ -27,7 +27,7 @@ class TestFirstSolution(unittest.TestCase):
     self.assertEqual(yourFirstSolution(firstCase), 13)
     self.assertEqual(yourFirstSolution(secondCase), 2)
 
-#Change secondPuzzleSolution() in 79 line with your function name after importing it beforehand
+#Change secondPuzzleSolution() in 32 line with your function name after importing it beforehand
 def yourSecondSolution(lines):
   return secondPuzzleSolution(lines)
 

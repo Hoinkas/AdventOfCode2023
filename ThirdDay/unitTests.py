@@ -70,7 +70,7 @@ tenthCase = ['12.......*..',
              '.*.........*',
              '1.1..503+.56']
 
-#Change firstPuzzleSolution() in 60 line with your function name after importing it beforehand
+#Change firstPuzzleSolution() in 75 line with your function name after importing it beforehand
 def yourFirstSolution(lines):
   return firstPuzzleSolution(lines)
 
@@ -90,7 +90,7 @@ class TestFirstSolution(unittest.TestCase):
     self.assertEqual(yourFirstSolution(ninthCase), 108)
     self.assertEqual(yourFirstSolution(tenthCase), 925)
 
-#Change secondPuzzleSolution() in 79 line with your function name after importing it beforehand
+#Change secondPuzzleSolution() in 95 line with your function name after importing it beforehand
 def yourSecondSolution(lines):
   return secondPuzzleSolution(lines)
 
