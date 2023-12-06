@@ -12,7 +12,7 @@ def checkOverlaping(charIndex, number: re.Match):
 
     return secondInterval.overlaps(firstInterval)
 
-# #---------FIRST PUZZLE SOLUTION---------
+#---------FIRST PUZZLE SOLUTION---------
 def firstPuzzleSolution(lines):
   firstTaskResult = 0
   specialCharDictList = []
@@ -36,8 +36,9 @@ def firstPuzzleSolution(lines):
           firstTaskResult += sum([int(specialNum.group(0)) for specialNum in specialNumsInRow if(checkOverlaping(charIndex, specialNum))])
               
   return firstTaskResult
-# print(firstPuzzleSolution(lines))
-#---------Second PUZZLE SOLUTION---------
+print(firstPuzzleSolution(lines))
+
+#---------SECOND PUZZLE SOLUTION---------
 def secondPuzzleSolution(lines):
   secondTaskResult = 0
   specialCharDictList = []
