@@ -27,18 +27,16 @@ firstTaskResult = numpy.prod(racesWinsList)
 print (firstTaskResult)
 
 #---------SECOND PUZZLE SOLUTION---------
-import re
+import re, math
 
 numbersList = [re.findall(r"(\d+)", line) for line in lines]
 timeOfRace = int(''.join([time for time in numbersList[0]]).replace(" ", ""))
 recordOfRace = int(''.join([time for time in numbersList[1]]).replace(" ", ""))
 
-secondTaskResult = 0
+# f(x) = -(pressTime**2) + (timeOfRace * pressTime) - recordOfRace
+delta = timeOfRace**2 - (4 * recordOfRace)
+firstWinInput = math.ceil(((-timeOfRace) + math.sqrt(delta))/2*(-1))
+secondWinInput = math.floor(((-timeOfRace) - math.sqrt(delta))/2*(-1))
 
-for pressTime in range(timeOfRace):
-  timeLeft = timeOfRace - pressTime
-  reachedDistance = timeLeft * pressTime
-
-  if reachedDistance > recordOfRace: secondTaskResult += 1
-
+secondTaskResult = secondWinInput - firstWinInput + 1
 print (secondTaskResult)
