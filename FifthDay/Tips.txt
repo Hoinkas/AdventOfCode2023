@@ -1,0 +1,18 @@
+# I think it also helps to keep a totally ordered set of ranges to go along
+# with the mappings. You can go through them at the same time
+# (go through mappings until you reach the next overlapping range, then cycle
+#  through mappings until you reach the end of the current range)
+# instead of checking if each mapping is relevant for each range.
+# Brute force and simpler solutions still work, but in Python I think
+# I had rather fast code in <100 lines,.4ms vs 1-4ms.
+
+#sort and collapse the mapped ranges at each step ends up saving time.
+
+#I sort but don't collapse ranges after each round,
+# and I still get an answer in about 50 microseconds.
+# I'm not sure collapsing ranges would add much.
+# (I do plan to add range collapsing to my code, because
+#  I think it makes things cleaner, but I don't expect a performace
+#  improvement from it.)
+# Edit: I added range merging. My final list of number ranges dropped
+# from 98 ranges to 60. The runtime didn't change at all.

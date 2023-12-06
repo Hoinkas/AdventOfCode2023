@@ -26,7 +26,7 @@ def secondPuzzleSolution(lines):
   secondTaskResult = 0
 
   for line in lines:
-    results = re.findall(f"(?=(\d|{'|'.join(translator.keys())}))", line)
+    results = re.findall(r"(?=(\d|{'|'.join(translator.keys())}))", line)
     translatedList = [int(item) if item.isdigit() else translator[item] for item in results]
     numbersToAdd = translatedList[0] * 10 + translatedList[-1]
     secondTaskResult += numbersToAdd
