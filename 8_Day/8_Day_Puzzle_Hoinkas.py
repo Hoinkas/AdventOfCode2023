@@ -41,11 +41,11 @@ def secondPuzzleSolution(lines):
       stepsToChange[i] = allSteps[step][goLeftOrRight]
 
       if stepsToChange[i].endswith('Z') and step not in steps:
-        steps[starterSteps[i]] = [numberOfTurn + 1, step]
+        steps[starterSteps[i]] = numberOfTurn + 1
 
     numberOfTurn += 1
 
-  result = math.lcm(*[item[0] for item in steps.values()])
+  result = math.lcm(*[item for item in steps.values()])
 
   return result
 print(secondPuzzleSolution(lines))
