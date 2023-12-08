@@ -9,9 +9,10 @@ def firstPuzzleSolution(lines):
 
   for line in lines:
     twoCardsList = map(str.strip(), line.split(': ')[1].split('|'))
+    print(twoCardsList)
     winningCardList, guessingCardList = [map(int, cardList.split()) for cardList in twoCardsList]
 
-    numberOfWinningCards = len(list(set(winningCardList).intersection(guessingCardList)))
+    numberOfWinningCards = len(list(set(winningCardList) & set(guessingCardList)))
     if numberOfWinningCards > 0: firstTaskResult += 2**(numberOfWinningCards-1)
   
   return firstTaskResult
@@ -32,10 +33,10 @@ def secondPuzzleSolution(lines):
     twoCardsList = map(str.strip(), cards.split('|'))
     winningCardList, guessingCardList = [map(int, cardList.split()) for cardList in twoCardsList]
 
-    numberOfWinningCards = len(list(set(winningCardList).intersection(guessingCardList)))
+    numberOfWinningCards = len(set(winningCardList) & set(guessingCardList))
     gameWins[numberOfGame] = numberOfWinningCards
 
-  for i in range(1, len(gameDict.keys())):
+  for i in range(1, len(gameDict)):
     for j in range(1, gameWins[i]+1):
       gameDict[i+j] += gameDict[i]
 
