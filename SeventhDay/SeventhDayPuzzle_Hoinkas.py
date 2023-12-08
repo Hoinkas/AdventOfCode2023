@@ -3,16 +3,15 @@ with open('AOC_7Day_Quest.txt') as f:
   l = f.readlines()
   lines = [entry.strip() for entry in l]
   
-#---------GLOBAL VARIABLES---------
-listOfHands = []
-
-for line in lines:
-  (hand, bid) = line.split()
-  listOfHands.append([hand, int(bid)])
-
 #---------FIRST PUZZLE SOLUTION---------
-def firstTaskFunction():
+def firstPuzzleSolution(lines):
   import functools
+
+  listOfHands = []
+
+  for line in lines:
+    (hand, bid) = line.split()
+    listOfHands.append([hand, int(bid)])
 
   cardList = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']
   cardList.reverse()
@@ -38,11 +37,17 @@ def firstTaskFunction():
 
   return firstTaskResult
     
-print(firstTaskFunction())
+# print(firstPuzzleSolution(lines))
 
 #---------SECOND PUZZLE SOLUTION---------
-def secondTaskFunction():
+def secondPuzzleSolution(lines):
   import functools
+
+  listOfHands = []
+
+  for line in lines:
+    (hand, bid) = line.split()
+    listOfHands.append([hand, int(bid)])
   
   cardList = ['A', 'K', 'Q', 'T', '9', '8', '7', '6', '5', '4', '3', '2', 'J']
   cardList.reverse()
@@ -78,4 +83,4 @@ def secondTaskFunction():
     
   return secondTaskResult
 
-print(secondTaskFunction())
+# print(secondPuzzleSolution(lines))
