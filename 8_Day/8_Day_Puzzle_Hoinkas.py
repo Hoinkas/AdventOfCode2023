@@ -34,21 +34,18 @@ def secondPuzzleSolution(lines):
 
   numberOfTurn = 0
 
-  while not len(steps.keys()) == len(starterSteps):
+  while len(steps) < len(starterSteps):
     goLeftOrRight = instructions[numberOfTurn % len(instructions)]
 
-    for i in range(len(stepsToChange)):
-      stepsToChange[i] = allSteps[stepsToChange[i]][goLeftOrRight]
+    for i, step in enumerate(stepsToChange):
+      stepsToChange[i] = allSteps[step][goLeftOrRight]
 
-      if(stepsToChange[i].endswith('Z') and stepsToChange[i] not in steps.keys()):
-        steps[starterSteps[i]] = [numberOfTurn + 1, stepsToChange[i]]
+      if stepsToChange[i].endswith('Z') and step not in steps:
+        steps[starterSteps[i]] = [numberOfTurn + 1, step]
 
     numberOfTurn += 1
 
-  result = 1
-
-  for num in map(int, [item[0] for item in steps.values()]):
-    result = result * num // math.gcd(result, num)
+  result = math.lcm(*[item[0] for item in steps.values()])
 
   return result
 print(secondPuzzleSolution(lines))
