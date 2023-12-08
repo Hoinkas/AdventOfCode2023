@@ -8,25 +8,47 @@ def firstPuzzleSolution(lines):
   import re
 
   instructions = [0 if line == 'L' else 1 for line in [*lines[0]]]
-  allSteps = {}
-
-  for line in lines[2:]:
-    allNames = re.findall(r"(\w{3})", line)
-    allSteps[allNames[0]] = (allNames[1], allNames[2])
-
-    # ({stepName: (leftStep, rightStep)} for stepName, leftStep, rightStep in re.findall(r"(\w{3})", line) for line in lines[2:])
+  allSteps = {names[0]: (names[1], names[2]) for line in lines[2:] for names in [re.findall(r"(\w{3})", line)]}
 
   currentStep = 'AAA'
-  numberOfStep = 0
+  numberOfTurn = 0
 
   while not currentStep == 'ZZZ':
-    goLeftOrRight = instructions[numberOfStep % len(instructions)]
+    goLeftOrRight = instructions[numberOfTurn % len(instructions)]
     currentStep = allSteps[currentStep][goLeftOrRight]
-    numberOfStep += 1
+    numberOfTurn += 1
     
-  return numberOfStep
-# print(firstPuzzleSolution(lines))
+  return numberOfTurn
+print(firstPuzzleSolution(lines))
 
 #---------SECOND PUZZLE SOLUTION---------
+def secondPuzzleSolution(lines):
+  import re, math
 
-# print(secondPuzzleSolution(lines))
+  instructions = [0 if line == 'L' else 1 for line in [*lines[0]]]
+  allSteps = {names[0]: [names[1], names[2]] for line in lines[2:] for names in [re.findall(r"(\w{3})", line)]}
+
+  starterSteps = [step for step in allSteps.keys() if step.endswith('A')]
+  stepsToChange = starterSteps.copy()
+  steps = {}
+
+  numberOfTurn = 0
+
+  while not len(steps.keys()) == len(starterSteps):
+    goLeftOrRight = instructions[numberOfTurn % len(instructions)]
+
+    for i in range(len(stepsToChange)):
+      stepsToChange[i] = allSteps[stepsToChange[i]][goLeftOrRight]
+
+      if(stepsToChange[i].endswith('Z') and stepsToChange[i] not in steps.keys()):
+        steps[starterSteps[i]] = [numberOfTurn + 1, stepsToChange[i]]
+
+    numberOfTurn += 1
+
+  result = 1
+
+  for num in map(int, [item[0] for item in steps.values()]):
+    result = result * num // math.gcd(result, num)
+
+  return result
+print(secondPuzzleSolution(lines))
