@@ -11,7 +11,6 @@ def lineSplit(line):
 
 def proposedSolution(inputPoints):
   points = [inputPoints]
-
   while any(points[-1]):
     points.append(list(np.diff(points[-1])))
 
@@ -21,28 +20,28 @@ def interpolationSolution(points):
   result = 0
   xPoint = len(points)
     
-  for i, y in enumerate(points):
+  for x, y in enumerate(points):
     p = 1
-    for j in range(len(points)):
-      if i != j: p *= (xPoint - j)/(i - j)
+    for i in range(xPoint):
+      if x != i: p *= (xPoint - i)/(x - i)
     result += y * p
 
   return round(result)
 
 #---------FIRST PUZZLE SOLUTION---------
 def firstPuzzleSoltion(lines):
-  firstTaskResult = sum(proposedSolution(lineSplit(line)) for line in lines)
-  firstTaskResultWithInterpolation = sum(interpolationSolution(lineSplit(line)) for line in lines)
+  result = sum(proposedSolution(lineSplit(line)) for line in lines)
+  resultWithInterpolation = sum(interpolationSolution(lineSplit(line)) for line in lines)
 
-  return firstTaskResult, firstTaskResultWithInterpolation
+  return result, resultWithInterpolation
 
 print(firstPuzzleSoltion(lines))
 
 #---------SECOND PUZZLE SOLUTION---------
 def secondPuzzleSoltion(lines):
-  secondTaskResult = sum(proposedSolution(lineSplit(line)[::-1]) for line in lines)
-  secondTaskResultWithInterpolation = sum(interpolationSolution(lineSplit(line)[::-1]) for line in lines)
+  result = sum(proposedSolution(lineSplit(line)[::-1]) for line in lines)
+  resultWithInterpolation = sum(interpolationSolution(lineSplit(line)[::-1]) for line in lines)
 
-  return secondTaskResult, secondTaskResultWithInterpolation
+  return result, resultWithInterpolation
 
 print(secondPuzzleSoltion(lines))
