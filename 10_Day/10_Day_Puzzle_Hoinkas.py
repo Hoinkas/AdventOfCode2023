@@ -52,17 +52,13 @@ while routes[0] != routes[1]:
     pointsDifference = (previousPoints[i][0] - route[0], previousPoints[i][1] - route[1])
     currentSymbol = matrix[route[0]][route[1]]
 
-    # print(previousPoints[i], currentSymbol, pipesDict[currentSymbol], pointsDifference)
     pipesNextY = pipesDict[currentSymbol][0][pointsDifference[0]+1]
     pipesNextX = pipesDict[currentSymbol][1][pointsDifference[1]+1]
 
     nextCoordY = previousPoints[i][0] + pipesNextY
     nextCoordX = previousPoints[i][1] + pipesNextX
 
-    # print(furthestPoint, matrix[nextCoordY][nextCoordX], (nextCoordY, nextCoordX))
     routes[i] = (nextCoordY, nextCoordX)
-    # print(routes, routes[0] != routes[1])
-
     previousPoints[i] = route
 
 print(furthestPoint)
