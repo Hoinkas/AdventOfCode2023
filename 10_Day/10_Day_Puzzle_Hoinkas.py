@@ -1,19 +1,12 @@
-lines = []
+matrix = []
 with open('AOC_10_Day_Quest.txt') as f:
   l = f.readlines()
-  lines = [entry.strip() for entry in l]
+  matrix = [entry.strip() for entry in l]
 
 #---------FIRST PUZZLE SOLUTION---------
 import re
 
-startingPosition = (0,0)
-matrix = lines
-
-for i, row in enumerate(matrix):
-  match = re.search(r"S", row)
-
-  if match:
-    startingPosition = (i, match.start())
+startingPosition = next(((i, match.start()) for i, row in enumerate(matrix) if (match := re.search(r"S", row))), (0, 0))
 
 #Rules for each type of pipe telling where the next pipe is
 pipesDict = {
@@ -37,8 +30,7 @@ for point in neighborsPoints:
 
   if(0 <= sY+i < len(matrix) and 0 <= sX+j < len(matrix[0]) and matrix[sY+i][sX+j] != '.'):
     currentSymbol = matrix[sY+i][sX+j]
-    pipesNextY = pipesDict[currentSymbol][0][i+1]
-    pipesNextX = pipesDict[currentSymbol][1][j+1]
+    pipesNextY, pipesNextX = [pipesDict[currentSymbol][i][iterat+1] for i, iterat in enumerate(point)]
 
     if(pipesNextY != '' and pipesNextX != ''): routes.append((sY+i,sX+j))
 
@@ -50,15 +42,16 @@ while routes[0] != routes[1]:
 
   for i, route in enumerate(routes):
     pointsDifference = (previousPoints[i][0] - route[0], previousPoints[i][1] - route[1])
+    
     currentSymbol = matrix[route[0]][route[1]]
+    pipeCalc = pipesDict[currentSymbol]
+    prevPoint = previousPoints[i]
 
-    pipesNextY = pipesDict[currentSymbol][0][pointsDifference[0]+1]
-    pipesNextX = pipesDict[currentSymbol][1][pointsDifference[1]+1]
-
-    nextCoordY = previousPoints[i][0] + pipesNextY
-    nextCoordX = previousPoints[i][1] + pipesNextX
+    pipesNextY, pipesNextX = [pipeCalc[i][diff+1] for i, diff in enumerate(pointsDifference)]
+    nextCoordY, nextCoordX = (prevPoint[0] + pipesNextY, prevPoint[1] + pipesNextX)
 
     routes[i] = (nextCoordY, nextCoordX)
+
     previousPoints[i] = route
 
 print(furthestPoint)
