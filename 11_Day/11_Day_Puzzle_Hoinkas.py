@@ -5,38 +5,41 @@ with open('AOC_11_Day_Quest.txt') as f:
   
 #---------FIRST PUZZLE SOLUTION---------
 def firstTaskResult(lines):
-  import re, numpy as np
+  import re
 
-  galaxiesBefore = []
+  oldGalaxies = []
   mapOfSky = []
 
   for i, line in enumerate(lines):
     mapOfSky.append(list(line))
 
     foundGalaxies = re.finditer(r'#', line)
-    [galaxiesBefore.append((i, galaxy.start())) for galaxy in foundGalaxies]
+    [oldGalaxies.append((i, galaxy.start())) for galaxy in foundGalaxies]
+
+  galaxies = oldGalaxies.copy()
+  valueToExpand = 1
 
   addValue = 0
   for i in range(len(mapOfSky)):
-    if all(galaxyX != i for galaxyX, _ in galaxiesBefore):
-      mapOfSky = np.insert(mapOfSky,i+addValue,'.',axis=0)
+    if all(galaxyY != i for galaxyY, _ in oldGalaxies):
+      galaxiesToRelocate = [galaxy for galaxy in galaxies if galaxy[0] >= i+addValue]
+      
+      for galaxy in galaxiesToRelocate:
+        galaxies.remove(galaxy)
+        galaxies.append((galaxy[0] + valueToExpand, galaxy[1]))
+    
       addValue += 1
 
   addValue = 0
   for j in range(len(mapOfSky[0])):
-    if all(galaxyY != j for _, galaxyY in galaxiesBefore):
-      mapOfSky = np.insert(mapOfSky,j+addValue,'.',axis=1)
+    if all(galaxyX != j for _, galaxyX in oldGalaxies):
+      galaxiesToRelocate = [galaxy for galaxy in galaxies if galaxy[1] >= j+addValue]
+      
+      for galaxy in galaxiesToRelocate:
+        galaxies.remove(galaxy)
+        galaxies.append((galaxy[0], galaxy[1] + valueToExpand))
+
       addValue += 1
-
-  # [print(sky) for sky in mapOfSky]
-
-  galaxies = []
-
-  for i, row in enumerate(mapOfSky):
-    foundGalaxies = re.finditer(r'#', ''.join(row))
-
-    for galaxy in foundGalaxies:
-      if galaxy: galaxies.append((i, galaxy.start()))
 
   distance = 0
   pairSet = set()
@@ -51,3 +54,4 @@ def firstTaskResult(lines):
   return distance
 
 print(firstTaskResult(lines))
+
